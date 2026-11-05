@@ -4,10 +4,8 @@ import { ensureSeeded } from "@/lib/seed";
 
 export async function GET(req: NextRequest) {
   try {
+    const query = (req.nextUrl.searchParams.get("q") || "").trim().toUpperCase();
     await ensureSeeded();
-
-    const { searchParams } = new URL(req.url);
-    const query = (searchParams.get("q") || "").trim().toUpperCase();
 
     if (!query) {
       // Demo kolaylığı için mevcut örnek siparişlerin özet listesini döndür
