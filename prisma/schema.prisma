@@ -1,0 +1,115 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Product {
+  id                  String   @id @default(cuid())
+  sku                 String   @unique
+  name                String
+  category            String   // FURNITURE, ELECTRONICS, INDUSTRIAL, MEDICAL
+  unitPrice           Float    // TL cinsinden ürün satış fiyatı
+  returnShippingCost  Float    // TL cinsinden gidiş-dönüş lojistik + elleçleme maliyeti
+  sparePartsAvailable Boolean  @default(true)
+  sparePartCost       Float    @default(150.0) // Yedek parça + küçük kargo maliyeti
+  warrantyMonths      Int      @default(24)
+  createdAt           DateTime @default(now())
+
+  orders OrderItem[]
+  claims Claim[]
+}
+
+model Order {
+  id              String   @id @default(cuid())
+  orderNumber     String   @unique // Örn: ORD-2026-8492
+  customerName    String
+  customerEmail   String
+  customerPhone   String
+  companyName     String?  // B2B Bayi / Kurumsal müşteri adı
+  shippingCarrier String   // Yurtiçi, Aras, Horoz Lojistik, DHL vb.
+  trackingNumber  String
+  deliveredAt     DateTime
+  totalAmount     Float
+  createdAt       DateTime @default(now())
+
+  items  OrderItem[]
+  claims Claim[]
+}
+
+model OrderItem {
+  id           String  @id @default(cuid())
+  orderId      String
+  productId    String
+  serialNumber String  @unique // Örn: SN-99482-TR
+  quantity     Int     @default(1)
+  unitPrice    Float
+
+  order   Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id])
+}
+
+model Claim {
+  id                  String   @id @default(cuid())
+  rmaNumber           String   @unique // Örn: RMA-2026-1042
+  orderId             String
+  productId           String
+  serialNumber        String
+  issueCategory       String   // CARGO_DAMAGE, MISSING_PART, FUNCTIONAL_DEFECT, WRONG_ITEM
+  issueSeverity       String   // COSMETIC, MINOR_PART, CRITICAL_FAILURE
+  customerDescription String
+  status              String   @default("PENDING_EVIDENCE")
+  // Durumlar: PENDING_EVIDENCE, OFFER_PROPOSED, DEFLECTED_SAVED, RMA_APPROVED, IN_WAREHOUSE, RESOLVED, REJECTED
+
+  // Akıllı Çözüm Ağacı (Kargosuz Kurtarma / Deflection) verileri
+  proposedOfferType   String?  // SPARE_PART_DISPATCH, PARTIAL_REFUND, FULL_RMA_RETURN
+  proposedRefundAmt   Float?   // Kısmi iade teklif tutarı (TL)
+  estimatedSavedCost  Float    @default(0) // Kurtarılan lojistik + ürün maliyeti (TL)
+  offerAccepted       Boolean?
+
+  // Kriptografik Kanıt & Bütünlük Mührü (ScopeLock standardı)
+  integrityHash       String   // SHA-256 kanıt ve talep özeti
+  clientIp            String?
+  webhookUrl          String?  // ERP / E-Ticaret bildirim URL'i
+
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  order      Order                 @relation(fields: [orderId], references: [id])
+  product    Product               @relation(fields: [productId], references: [id])
+  evidences  Evidence[]
+  inspection WarehouseInspection?
+}
+
+model Evidence {
+  id           String   @id @default(cuid())
+  claimId      String
+  evidenceType String   // BOX_BARCODE_PHOTO, DAMAGE_CLOSEUP, SERIAL_LABEL, DEFECT_VIDEO, CARRIER_REPORT
+  fileName     String
+  mimeType     String
+  fileSize     Int
+  sha256Hash   String   // Dosya bütünlük özeti (Manipülasyon kalkanı)
+  previewData  String?  // Demo/önizleme için güvenli veri veya URL
+  verified     Boolean  @default(true)
+  uploadedAt   DateTime @default(now())
+
+  claim Claim @relation(fields: [claimId], references: [id], onDelete: Cascade)
+}
+
+model WarehouseInspection {
+  id                  String   @id @default(cuid())
+  claimId             String   @unique
+  inspectorName       String
+  packageCondition    String   // INTACT, CRUSHED, TORN, WET, UNOPENED
+  serialMatched       Boolean  @default(true)
+  evidenceMatched     Boolean  @default(true)
+  finalDecision       String   // REPAIR, REPLACE, REFUND, REJECT_USER_FAULT, CARRIER_COMPENSATION
+  carrierClaimAmount  Float?   // Kargo şirketinden tazmin edilecek tutar (TL)
+  inspectorNotes      String
+  inspectedAt         DateTime @default(now())
+
+  claim Claim @relation(fields: [claimId], references: [id], onDelete: Cascade)
+}
