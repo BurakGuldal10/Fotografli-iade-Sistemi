@@ -1,6 +1,6 @@
-# 🛡️ ClaimFlow — Kanıt Zorunlu B2B/B2C Garanti, Hasar & RMA Karar Motoru
+# 🛡️ Fotoğraflı İade Sistemi — Kanıt Zorunlu B2B/B2C Garanti, Hasar & İade Karar Motoru
 
-**ClaimFlow**, e-ticaret markaları, mobilya üreticileri, endüstriyel makine distribütörleri ve teknik servis ağları için geliştirilmiş; **kanıtsız iade kargolarını engelleyen**, **kargosuz çözüm ağacıyla (Yedek Parça / Kısmi İade) lojistik maliyetlerini kurtaran** ve **SHA-256 mühürlü kanıtlarla kargo şirketlerinden hasar tazminatı (rücu) alınmasını sağlayan** kurumsal bir RMA (Return Merchandise Authorization) platformudur.
+**Fotoğraflı İade Sistemi**, e-ticaret markaları, mobilya üreticileri, endüstriyel makine distribütörleri ve teknik servis ağları için geliştirilmiş; **kanıtsız iade kargolarını engelleyen**, **kargosuz çözüm ağacıyla (Yedek Parça / Kısmi İade) lojistik maliyetlerini kurtaran** ve **SHA-256 mühürlü kanıtlarla kargo şirketlerinden hasar tazminatı (rücu) alınmasını sağlayan** kurumsal bir RMA (İade/Hasar Yetkilendirme) platformudur.
 
 ---
 

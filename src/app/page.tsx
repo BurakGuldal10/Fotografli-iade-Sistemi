@@ -23,10 +23,10 @@ export default function HomePage() {
             </div>
             <div>
               <span className="font-bold text-lg tracking-tight text-white">
-                ClaimFlow
+                Fotoğraflı İade Sistemi
               </span>
               <span className="ml-2 text-xs px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
-                B2B & E-Ticaret RMA Karar Motoru
+                Kanıt Zorunlu İade & Hasar Karar Motoru
               </span>
             </div>
           </div>
@@ -65,7 +65,7 @@ export default function HomePage() {
           </h1>
 
           <p className="text-base sm:text-lg text-slate-400 max-w-3xl mx-auto leading-relaxed">
-            <strong>ClaimFlow</strong>; mobilya, elektronik, endüstriyel makine ve e-ticaret
+            <strong>Fotoğraflı İade Sistemi</strong>; mobilya, elektronik, endüstriyel makine ve e-ticaret
             markaları için sipariş/seri numarası doğrulayan, arıza tipine göre{" "}
             <strong>zorunlu fotoğraf/video kanıtı</strong> alan ve komple iade yerine{" "}
             <strong>Ücretsiz Yedek Parça / Kısmi İade</strong> önererek lojistik maliyetlerini
@@ -159,7 +159,7 @@ export default function HomePage() {
             </p>
           </div>
           <span className="text-xs font-mono text-slate-400">
-            ClaimFlow v1.0 • Production-Ready
+            Fotoğraflı İade Sistemi v1.0 • Canlıya Hazır
           </span>
         </section>
       </main>

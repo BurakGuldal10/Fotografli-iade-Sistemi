@@ -237,10 +237,10 @@ export default function CustomerRmaPortalPage() {
             <div>
               <div className="flex items-center gap-2">
                 <span className="font-bold text-lg tracking-tight text-white">
-                  ClaimFlow
+                  Fotoğraflı İade Sistemi
                 </span>
                 <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 font-medium">
-                  Kanıt Zorunlu RMA & Karar Motoru
+                  Kanıt Zorunlu İade & Karar Motoru
                 </span>
               </div>
               <p className="text-xs text-slate-400">
@@ -460,7 +460,7 @@ export default function CustomerRmaPortalPage() {
               {/* Yazdırılabilir QR RMA Kargo Etiketi */}
               <div className="bg-white text-slate-950 rounded-2xl p-4 shadow-lg border-2 border-dashed border-slate-300 flex flex-col items-center text-center">
                 <div className="w-full flex items-center justify-between text-[11px] font-bold border-b border-slate-200 pb-1.5 mb-2">
-                  <span>CLAIMFLOW RMA ETİKETİ</span>
+                  <span>FOTOĞRAFLI İADE ETİKETİ</span>
                   <span className="font-mono">{createdResult.claim.rmaNumber}</span>
                 </div>
                 {createdResult.qrDataUrl && (

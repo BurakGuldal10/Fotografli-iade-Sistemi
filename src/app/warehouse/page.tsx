@@ -225,10 +225,10 @@ export default function WarehouseDashboardPage() {
             <div>
               <div className="flex items-center gap-2">
                 <span className="font-bold text-lg tracking-tight text-white">
-                  ClaimFlow Depo & Ekspertiz Merkezi
+                  Fotoğraflı İade • Depo & Ekspertiz Merkezi
                 </span>
                 <span className="text-xs px-2 py-0.5 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30 font-medium">
-                  RMA Karar & Kargo Rücu Paneli
+                  Hasar Kabul & Kargo Rücu Paneli
                 </span>
               </div>
               <p className="text-xs text-slate-400">
