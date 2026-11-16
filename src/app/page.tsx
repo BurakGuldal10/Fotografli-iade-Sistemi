@@ -153,13 +153,11 @@ export default function HomePage() {
           <div className="flex items-center gap-3">
             <Lock className="w-5 h-5 text-emerald-400 shrink-0" />
             <p className="text-xs text-slate-300">
-              <strong>Ali Oda Güvenlik Mimarisi:</strong> SSRF Kalkanı (`lib/ssrf.ts`),
-              HMAC-SHA256 Kanıt Bütünlük Mührü (`crypto.timingSafeEqual`) ve Sıkı MIME
-              Dosya Denetimi aktiftir.
+              <strong>Kurumsal Güvenlik Altyapısı:</strong> SSRF Kalkanı, HMAC-SHA256 Kriptografik Kanıt Mührü ve Sıkı Dosya Doğrulama Kalkanı ile tam korumalıdır.
             </p>
           </div>
           <span className="text-xs font-mono text-slate-400">
-            Fotoğraflı İade Sistemi v1.0 • Canlıya Hazır
+            Fotoğraflı İade Sistemi v1.0 • Canlıda
           </span>
         </section>
       </main>

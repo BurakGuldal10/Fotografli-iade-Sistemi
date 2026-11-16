@@ -657,7 +657,7 @@ export default function CustomerRmaPortalPage() {
                 {/* İsteğe Bağlı ERP Webhook (SSRF Korumalı) */}
                 <div className="pt-2">
                   <label className="block text-xs font-medium text-slate-400 mb-1">
-                    B2B ERP / E-Ticaret Bildirim Webhook URL (İsteğe Bağlı • Ali Oda SSRF Kalkanı Aktif)
+                    B2B ERP / E-Ticaret Bildirim Webhook URL (İsteğe Bağlı • SSRF Korumalı)
                   </label>
                   <input
                     type="url"
